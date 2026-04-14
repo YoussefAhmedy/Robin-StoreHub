@@ -1,0 +1,26 @@
+POST https://glorious-lamp-5gxr4vppv9wqfvqw9-5207.app.github.dev/api/Auth/register
+Content-Type: application/json
+
+{
+  "firstName": "أحمد",
+  "lastName": "محمد",
+  "email": "ahmed@auraloom.com",
+  "password": "StrongPassword123!"
+}
+
+###
+
+### تجربة تسجيل الدخول (Login)
+POST https://glorious-lamp-5gxr4vppv9wqfvqw9-5207.app.github.dev/api/Auth/login
+Content-Type: application/json
+
+{
+  "email": "ahmed@auraloom.com",
+  "password": "StrongPassword123!"
+}
+
+###
+
+### تجربة المسار المحمي (بيانات المستخدم الحالي)
+GET https://glorious-lamp-5gxr4vppv9wqfvqw9-5207.app.github.dev/api/Auth/me
+Authorization: Bearer حط_التوكن_بتاعك_هنا
