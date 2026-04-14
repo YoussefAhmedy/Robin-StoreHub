@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
@@ -13,6 +14,15 @@ import OrdersPage from './pages/OrdersPage';
 import AdminDashboard from './pages/AdminDashboard';
 import StaffDashboard from './pages/StaffDashboard';
 
+// ── Fix 1: Scroll to top on every route change ──────────────────────────────
+function ScrollToTop() {
+  const { pathname, search } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname, search]);
+  return null;
+}
+
 function ProtectedRoute({ children, roles }) {
   const { user, loading } = useAuth();
   if (loading) return (
@@ -26,14 +36,10 @@ function ProtectedRoute({ children, roles }) {
   return children;
 }
 
-function NoFooterRoute({ element, noFooter }) {
-  const { user } = useAuth();
-  return element;
-}
-
 function AppLayout() {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <CartDrawer />
       <Routes>

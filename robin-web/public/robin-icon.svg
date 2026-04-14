@@ -1,6 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#BF4317"/>
-  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" 
-    font-family="Georgia,serif" font-size="42" font-weight="700" 
-    fill="white" letter-spacing="-2">R</text>
+  <!-- Navy background — matches RobinLogo.jsx brand colours -->
+  <rect width="64" height="64" fill="#1C293C"/>
+  <!-- Yellow accent border (top + left strips) -->
+  <rect x="0"  y="0" width="64" height="5" fill="#FDC800"/>
+  <rect x="0"  y="0" width="5"  height="64" fill="#FDC800"/>
+  <!-- Geometric R — same stroke style as RobinLogo.jsx -->
+  <path
+    d="M17 14 L17 50
+       M17 14 L38 14 Q48 14 48 26 Q48 35 38 37
+       L48 50
+       M17 37 L38 37"
+    stroke="#FDC800"
+    stroke-width="6"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+    fill="none"
+  />
 </svg>

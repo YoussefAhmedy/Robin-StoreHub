@@ -1,5 +1,119 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ChevronDown } from 'lucide-react';
 import RobinLogo from './RobinLogo';
+
+// ── Fix 4: Info accordion content ───────────────────────────────────────────
+const INFO_ITEMS = [
+  {
+    label: 'Sizing Guide',
+    content: (
+      <div style={{ fontSize:'12px', color:'rgba(251,251,249,0.55)', lineHeight:1.7 }}>
+        <p style={{ marginBottom:'6px' }}>All measurements are in <strong style={{ color:'rgba(251,251,249,0.8)' }}>centimetres</strong>. Measure over light clothing.</p>
+        <table style={{ width:'100%', borderCollapse:'collapse', fontSize:'11px' }}>
+          <thead>
+            <tr>
+              {['Size','Chest','Waist','Hip'].map(h => (
+                <th key={h} style={{ textAlign:'left', paddingBottom:'4px', color:'rgba(251,251,249,0.4)', fontWeight:700, letterSpacing:'0.06em', borderBottom:'1px solid rgba(251,251,249,0.1)' }}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {[['XS','84–86','66–68','90–92'],['S','88–92','72–74','94–96'],['M','94–98','78–80','100–102'],['L','100–104','84–86','106–108'],['XL','108–112','90–92','112–114']].map(([s,...v]) => (
+              <tr key={s}>
+                <td style={{ padding:'4px 0', fontWeight:700, color:'var(--primary)' }}>{s}</td>
+                {v.map((val,i) => <td key={i} style={{ padding:'4px 0' }}>{val}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p style={{ marginTop:'8px', fontSize:'11px', color:'rgba(251,251,249,0.35)' }}>Between sizes? Size up for a relaxed fit.</p>
+      </div>
+    ),
+  },
+  {
+    label: 'Shipping & Returns',
+    content: (
+      <div style={{ fontSize:'12px', color:'rgba(251,251,249,0.55)', lineHeight:1.8 }}>
+        <p><span style={{ color:'var(--primary)', fontWeight:700 }}>Cairo:</span> 1–3 business days · Free over 2,000 EGP</p>
+        <p><span style={{ color:'var(--primary)', fontWeight:700 }}>London:</span> 2–5 business days · Free over £80</p>
+        <p><span style={{ color:'var(--primary)', fontWeight:700 }}>International:</span> 7–14 business days · Flat rate</p>
+        <p style={{ marginTop:'8px', paddingTop:'8px', borderTop:'1px solid rgba(251,251,249,0.1)' }}>
+          Returns accepted within <strong style={{ color:'rgba(251,251,249,0.8)' }}>14 days</strong> of delivery — unworn, tags attached.
+          Contact us to initiate a return.
+        </p>
+      </div>
+    ),
+  },
+  {
+    label: 'FAQ',
+    content: (
+      <div style={{ fontSize:'12px', color:'rgba(251,251,249,0.55)', lineHeight:1.8 }}>
+        <p><strong style={{ color:'rgba(251,251,249,0.8)' }}>Do you restock?</strong> No — every run is final. Once it's gone, it's gone.</p>
+        <p><strong style={{ color:'rgba(251,251,249,0.8)' }}>Can I cancel my order?</strong> Within 2 hours of placing it, yes. Email us immediately.</p>
+        <p><strong style={{ color:'rgba(251,251,249,0.8)' }}>What payment methods?</strong> Visa, Mastercard, Cash on Delivery (Cairo only).</p>
+        <p><strong style={{ color:'rgba(251,251,249,0.8)' }}>Are your pieces unisex?</strong> Some are. Each product page specifies the fit.</p>
+      </div>
+    ),
+  },
+  {
+    label: 'Contact Us',
+    content: (
+      <div style={{ fontSize:'12px', color:'rgba(251,251,249,0.55)', lineHeight:1.9 }}>
+        <p>📧 <a href="mailto:hello@robin.store" style={{ color:'var(--primary)', textDecoration:'none' }}>hello@robin.store</a></p>
+        <p>📍 Cairo, Egypt &amp; London, UK</p>
+        <p>🕐 Support hours: Sun–Thu, 10 am – 6 pm CAT</p>
+        <p style={{ marginTop:'6px', fontSize:'11px', color:'rgba(251,251,249,0.35)' }}>
+          We typically reply within 24 hours.
+        </p>
+      </div>
+    ),
+  },
+];
+
+function InfoAccordion() {
+  const [open, setOpen] = useState(null);
+  return (
+    <div>
+      <p style={{ fontSize:'11px', fontWeight:900, letterSpacing:'0.12em', textTransform:'uppercase', color:'rgba(251,251,249,0.35)', marginBottom:'14px' }}>Info</p>
+      {INFO_ITEMS.map(({ label, content }) => {
+        const isOpen = open === label;
+        return (
+          <div key={label} style={{ borderBottom:'1px solid rgba(251,251,249,0.08)', marginBottom:'2px' }}>
+            <button
+              onClick={() => setOpen(isOpen ? null : label)}
+              style={{
+                width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center',
+                background:'none', border:'none', cursor:'pointer',
+                padding:'7px 0', fontSize:'13px', fontWeight:500,
+                color: isOpen ? 'var(--primary)' : 'rgba(251,251,249,0.65)',
+                textAlign:'left', transition:'color 0.15s',
+              }}
+              onMouseEnter={e => { if (!isOpen) e.currentTarget.style.color = 'rgba(251,251,249,0.9)'; }}
+              onMouseLeave={e => { if (!isOpen) e.currentTarget.style.color = 'rgba(251,251,249,0.65)'; }}
+            >
+              {label}
+              <ChevronDown
+                size={13}
+                style={{
+                  transition:'transform 0.2s',
+                  transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                  opacity: 0.5, flexShrink: 0,
+                }}
+              />
+            </button>
+            {isOpen && (
+              <div style={{ paddingBottom:'12px', animation:'fadeDown 0.18s ease' }}>
+                {content}
+              </div>
+            )}
+          </div>
+        );
+      })}
+      <style>{`@keyframes fadeDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}`}</style>
+    </div>
+  );
+}
 
 export default function Footer() {
   return (
@@ -36,13 +150,8 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* Info */}
-          <div>
-            <p style={{ fontSize:'11px', fontWeight:900, letterSpacing:'0.12em', textTransform:'uppercase', color:'rgba(251,251,249,0.35)', marginBottom:'14px' }}>Info</p>
-            {['Sizing Guide','Shipping & Returns','FAQ','Contact Us'].map(l => (
-              <p key={l} style={{ color:'rgba(251,251,249,0.65)', fontSize:'13px', marginBottom:'8px', cursor:'pointer' }}>{l}</p>
-            ))}
-          </div>
+          {/* ── Fix 4: Info accordion ── */}
+          <InfoAccordion />
 
           {/* Newsletter */}
           <div>

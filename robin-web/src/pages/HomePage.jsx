@@ -116,8 +116,8 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(220px,1fr))', gap:'16px' }}>
-            {products.slice(0,4).map(p => <ProductCard key={p.id} product={p}/>)}
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(200px,1fr))', gap:'16px' }}>
+            {products.slice(0,5).map(p => <ProductCard key={p.id} product={p}/>)}
           </div>
         </div>
       </section>

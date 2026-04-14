@@ -15,7 +15,24 @@ export default function Navbar() {
 
   const adminRole = user?.role === 'SuperAdmin' || user?.role === 'Admin';
   const staffRole = user?.role === 'Employee'   || user?.role === 'Staff';
-  const isActive  = (path) => location.pathname === path;
+
+  // ── Fix 2: Accurate active detection that handles query-string paths ──────
+  const isActive = (path) => {
+    if (path.includes('?')) {
+      const [basePath, qs] = path.split('?');
+      const expected = new URLSearchParams(qs);
+      const actual   = new URLSearchParams(location.search);
+      return (
+        location.pathname === basePath &&
+        [...expected.entries()].every(([k, v]) => actual.get(k) === v)
+      );
+    }
+    // Plain path like "/shop": only active when there is no recognised filter param
+    return (
+      location.pathname === path &&
+      !new URLSearchParams(location.search).get('filter')
+    );
+  };
 
   return (
     <>
