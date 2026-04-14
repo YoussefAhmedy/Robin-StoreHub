@@ -114,7 +114,11 @@ public class AdminController : ControllerBase
     {
         var slug = dto.Name.ToLower().Replace(" ", "-").Replace("'", "");
         var category = await _context.Categories.FirstOrDefaultAsync(c => c.Name == dto.CategoryName)
-            ?? new Category { Name = dto.CategoryName ?? "General" };
+            ?? new Category 
+            { 
+                Name = dto.CategoryName ?? "Uncategorized",
+                Slug = (dto.CategoryName ?? "Uncategorized").ToLower().Replace(" ", "-")
+            };
 
         if (category.Id == 0)
         {

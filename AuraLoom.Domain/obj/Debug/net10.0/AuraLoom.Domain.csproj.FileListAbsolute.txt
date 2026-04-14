@@ -1,0 +1,12 @@
+/workspaces/Robin-storeHub/AuraLoom.Domain/bin/Debug/net10.0/AuraLoom.Domain.deps.json
+/workspaces/Robin-storeHub/AuraLoom.Domain/bin/Debug/net10.0/AuraLoom.Domain.dll
+/workspaces/Robin-storeHub/AuraLoom.Domain/bin/Debug/net10.0/AuraLoom.Domain.pdb
+/workspaces/Robin-storeHub/AuraLoom.Domain/obj/Debug/net10.0/AuraLoom.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/Robin-storeHub/AuraLoom.Domain/obj/Debug/net10.0/AuraLoom.Domain.AssemblyInfoInputs.cache
+/workspaces/Robin-storeHub/AuraLoom.Domain/obj/Debug/net10.0/AuraLoom.Domain.AssemblyInfo.cs
+/workspaces/Robin-storeHub/AuraLoom.Domain/obj/Debug/net10.0/AuraLoom.Domain.csproj.CoreCompileInputs.cache
+/workspaces/Robin-storeHub/AuraLoom.Domain/obj/Debug/net10.0/AuraLoom.Domain.sourcelink.json
+/workspaces/Robin-storeHub/AuraLoom.Domain/obj/Debug/net10.0/AuraLoom.Domain.dll
+/workspaces/Robin-storeHub/AuraLoom.Domain/obj/Debug/net10.0/refint/AuraLoom.Domain.dll
+/workspaces/Robin-storeHub/AuraLoom.Domain/obj/Debug/net10.0/AuraLoom.Domain.pdb
+/workspaces/Robin-storeHub/AuraLoom.Domain/obj/Debug/net10.0/ref/AuraLoom.Domain.dll

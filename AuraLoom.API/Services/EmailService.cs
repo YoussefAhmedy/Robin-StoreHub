@@ -129,7 +129,7 @@ public class EmailService : IEmailService
         var html = $@"<div style='font-family:Georgia,serif;background:#F6F2EC;padding:2rem;'><h1 style='color:#BF4317;'>Robin Finance Report</h1><p>See attached or dashboard for full details.</p></div>";
         await SendAsync(toEmail, "[Robin] Monthly Finance Report", html);
     }
-}
+
 
     // ── WAITLIST EMAILS ──
 
@@ -155,3 +155,4 @@ public class EmailService : IEmailService
           <p style='font-size:0.8rem;color:#7A7670;margin-top:2rem;'>— Robin Studio</p></div>";
         await SendAsync(toEmail, $"Robin — {productName} is back in stock 🔔", html);
     }
+}
